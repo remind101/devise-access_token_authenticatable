@@ -1,4 +1,4 @@
-# Devise Access Token Authenticatable
+# Access Token Authenticatable
 
 A devise module that provides something a little more full featured than token
 authenticatable.
