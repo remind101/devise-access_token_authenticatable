@@ -9,12 +9,20 @@ module Devise
         access_token.invalidate! if access_token
       end
 
+      def set_authentication_token!
+        self.access_token = access_tokens.create!
+        save(:validate => false)
+      end
+
+      def ensure_authentication_token!
+        set_authentication_token! unless access_token
+      end
+
       # TODO Remove this entirely. A user should be able to have many access
       # tokens, that should expire after a period of time.
       def reset_authentication_token!
         invalidate_authentication_token!
-        self.access_token = access_tokens.create!
-        save(:validate => false)
+        set_authentication_token!
       end
 
       def authentication_token
