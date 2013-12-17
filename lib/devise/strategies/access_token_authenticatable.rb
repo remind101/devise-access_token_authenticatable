@@ -12,6 +12,15 @@ module Devise
           success!(resource)
         end
       end
+
+      def http_auth_hash
+        { authentication_keys.first => decode_credentials }
+      end
+
+      def decode_credentials
+        return nil unless request.authorization && request.authorization =~ /^Bearer (.*)/m
+        return $1
+      end
     end
   end
 end
