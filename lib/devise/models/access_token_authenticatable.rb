@@ -41,6 +41,10 @@ module Devise
         end
 
         Devise::Models.config(self, :token_authentication_key)
+
+        def http_authenticatable?(authenticatable_name)
+          true
+        end
       end
     end
   end
